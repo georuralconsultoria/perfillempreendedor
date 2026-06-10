@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Questionário Perfil do Estudante Empreendedor" />
+  <title>Perfil do Estudante Empreendedor</title>
+
+  <style>
+    :root {
+      --bg: #f4f7f5;
+      --card: #ffffff;
+      --text: #17211b;
+      --muted: #5d6b62;
+      --primary: #176b45;
+      --primary-dark: #0f5234;
+      --border: #d9e2dc;
+      --danger: #a52727;
+      --success: #176b45;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #e8f3ed 0, var(--bg) 320px);
+      color: var(--text);
+    }
+
+    .page {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 72px;
+    }
+
+    .hero { margin-bottom: 28px; }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #d7eee1;
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 18px 60px rgba(25, 60, 40, 0.08);
+      overflow: hidden;
+    }
+
+    .form-section {
+      padding: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 1.25rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-weight: 650;
+      font-size: 0.95rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 13px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 3px solid rgba(23, 107, 69, 0.14);
+      border-color: var(--primary);
+    }
+
+    .check-row {
+      flex-direction: row;
+      align-items: flex-start;
+      font-weight: 500;
+      margin: 10px 0;
+    }
+
+    .check-row input {
+      width: auto;
+      margin-top: 3px;
+    }
+
+    .help {
+      margin-top: -6px;
+      color: var(--muted);
+    }
+
+    .questions {
+      display: grid;
+      gap: 14px;
+    }
+
+    .question {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .question-title {
+      margin-bottom: 12px;
+      font-weight: 650;
+    }
+
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .scale label {
+      align-items: center;
+      padding: 9px 6px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .scale input { width: auto; }
+
+    .message {
+      display: none;
+      margin: 22px 28px 0;
+      padding: 14px 16px;
+      border-radius: 10px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .message.show { display: block; }
+    .message.success { background: #e4f4eb; color: var(--success); }
+    .message.error { background: #fde9e9; color: var(--danger); }
+
+    button {
+      width: calc(100% - 56px);
+      margin: 24px 28px 30px;
+      border: 0;
+      border-radius: 12px;
+      padding: 15px 20px;
+      background: var(--primary);
+      color: white;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    button:hover { background: var(--primary-dark); }
+    button:disabled { opacity: 0.65; cursor: wait; }
+
+    @media (max-width: 680px) {
+      .page { width: min(100% - 20px, 920px); padding-top: 24px; }
+      .grid { grid-template-columns: 1fr; }
+      .full { grid-column: auto; }
+      .form-section { padding: 22px 18px; }
+      .message { margin-left: 18px; margin-right: 18px; }
+      button { width: calc(100% - 36px); margin-left: 18px; margin-right: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <span class="badge">Pesquisa acadêmica</span>
+      <h1>Perfil do Estudante Empreendedor</h1>
+      <p>
+        Responda ao questionário abaixo. As informações serão utilizadas apenas
+        para fins acadêmicos e armazenadas no Supabase.
+      </p>
+    </section>
+
+    <form id="formulario" class="card">
+      <section class="form-section">
+        <h2>1. Consentimento</h2>
+
+        <label class="check-row">
+          <input id="consentimento" type="checkbox" required />
+          <span>Li as informações e concordo em participar desta pesquisa.</span>
+        </label>
+
+        <label class="check-row">
+          <input id="autoriza_uso_agregado" type="checkbox" />
+          <span>Autorizo o uso das respostas de forma agregada e anônima.</span>
+        </label>
+      </section>
+
+      <section class="form-section">
+        <h2>2. Informações acadêmicas</h2>
+
+        <div class="grid">
+          <label>
+            Faixa etária
+            <select id="idade" required>
+              <option value="">Selecione</option>
+              <option>Até 17 anos</option>
+              <option>18 a 24 anos</option>
+              <option>25 a 34 anos</option>
+              <option>35 a 44 anos</option>
+              <option>45 anos ou mais</option>
+            </select>
+          </label>
+
+          <label>
+            Curso
+            <input id="curso" type="text" maxlength="100" required />
+          </label>
+
+          <label>
+            Semestre
+            <select id="semestre" required>
+              <option value="">Selecione</option>
+              <option>1º semestre</option>
+              <option>2º semestre</option>
+              <option>3º semestre</option>
+              <option>4º semestre</option>
+              <option>5º semestre</option>
+              <option>6º semestre</option>
+              <option>7º semestre</option>
+              <option>8º semestre</option>
+              <option>9º semestre</option>
+              <option>10º semestre ou mais</option>
+            </select>
+          </label>
+
+          <label>
+            Turno
+            <select id="turno" required>
+              <option value="">Selecione</option>
+              <option>Matutino</option>
+              <option>Vespertino</option>
+              <option>Noturno</option>
+              <option>Integral</option>
+              <option>EAD</option>
+            </select>
+          </label>
+
+          <label class="full">
+            Área de interesse profissional
+            <input id="area_interesse" type="text" maxlength="150" required />
+          </label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>3. Experiência e interesse empreendedor</h2>
+
+        <div class="grid">
+          <label>
+            Experiência empreendedora
+            <select id="experiencia_empreendedora" required>
+              <option value="">Selecione</option>
+              <option>Nunca tive experiência</option>
+              <option>Já vendi produtos ou serviços informalmente</option>
+              <option>Participo ou participei de projeto empreendedor</option>
+              <option>Tenho ou já tive um negócio</option>
+              <option>Trabalho em negócio familiar</option>
+            </select>
+          </label>
+
+          <label>
+            Interesse em criar um negócio
+            <select id="interesse_negocio" required>
+              <option value="">Selecione</option>
+              <option value="1">1 — Nenhum interesse</option>
+              <option value="2">2 — Pouco interesse</option>
+              <option value="3">3 — Interesse moderado</option>
+              <option value="4">4 — Muito interesse</option>
+              <option value="5">5 — Interesse máximo</option>
+            </select>
+          </label>
+
+          <label class="full">
+            Tipo de projeto ou negócio que mais interessa
+            <select id="tipo_projeto" required>
+              <option value="">Selecione</option>
+              <option>Comércio</option>
+              <option>Serviços</option>
+              <option>Tecnologia</option>
+              <option>Educação</option>
+              <option>Meio ambiente</option>
+              <option>Agronegócio</option>
+              <option>Economia criativa</option>
+              <option>Projeto social</option>
+              <option>Ainda não sei</option>
+              <option>Outro</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>4. Autoavaliação</h2>
+        <p class="help">
+          Marque de 1 a 5, em que 1 significa “discordo totalmente” e 5 “concordo totalmente”.
+        </p>
+
+        <div id="questoes" class="questions"></div>
+      </section>
+
+      <section class="form-section">
+        <h2>5. Habilidades e apoio</h2>
+
+        <div class="grid">
+          <label class="full">
+            Quais habilidades você considera mais fortes?
+            <textarea id="habilidades" maxlength="500" required></textarea>
+          </label>
+
+          <label class="full">
+            Descreva uma ideia de projeto ou negócio, caso tenha
+            <textarea id="ideia_projeto" maxlength="700"></textarea>
+          </label>
+
+          <label class="full">
+            Que tipo de apoio seria mais importante?
+            <select id="apoio" required>
+              <option value="">Selecione</option>
+              <option>Capacitação e cursos</option>
+              <option>Mentoria</option>
+              <option>Acesso a crédito</option>
+              <option>Espaço e infraestrutura</option>
+              <option>Networking e parcerias</option>
+              <option>Divulgação</option>
+              <option>Outro</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <div id="mensagem" class="message" role="status" aria-live="polite"></div>
+
+      <button id="botaoEnviar" type="submit">Enviar respostas</button>
+    </form>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://rtllxyjtprhhaolrzkoa.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_CwQpgkbV4dEvtId_m92dJw_ztmlGmNy";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const perguntas = [
+      ["q_iniciativa", "Costumo tomar iniciativa diante de novos desafios."],
+      ["q_criatividade", "Consigo criar soluções diferentes para problemas."],
+      ["q_planejamento", "Tenho facilidade para planejar tarefas e metas."],
+      ["q_comunicacao", "Consigo apresentar minhas ideias com clareza."],
+      ["q_lideranca", "Tenho facilidade para liderar ou organizar grupos."],
+      ["q_resiliencia", "Consigo continuar tentando quando algo não dá certo."],
+      ["q_oportunidades", "Percebo oportunidades onde outras pessoas veem problemas."],
+      ["q_riscos", "Consigo avaliar riscos antes de tomar decisões."]
+    ];
+
+    const questoesEl = document.querySelector("#questoes");
+    const formulario = document.querySelector("#formulario");
+    const mensagem = document.querySelector("#mensagem");
+    const botaoEnviar = document.querySelector("#botaoEnviar");
+
+    for (const [nome, texto] of perguntas) {
+      const bloco = document.createElement("div");
+      bloco.className = "question";
+      bloco.innerHTML = `
+        <div class="question-title">${texto}</div>
+        <div class="scale">
+          ${[1, 2, 3, 4, 5].map(valor => `
+            <label>
+              <input
+                type="radio"
+                name="${nome}"
+                value="${valor}"
+                required
+              />
+              ${valor}
+            </label>
+          `).join("")}
+        </div>
+      `;
+      questoesEl.appendChild(bloco);
+    }
+
+    function mostrarMensagem(texto, tipo) {
+      mensagem.textContent = texto;
+      mensagem.className = `message show ${tipo}`;
+      mensagem.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function valorRadio(nome) {
+      const selecionado = document.querySelector(`input[name="${nome}"]:checked`);
+      return selecionado ? Number(selecionado.value) : null;
+    }
+
+    function gerarIdentificador() {
+      if (window.crypto && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+
+      return "resp-" + Date.now() + "-" + Math.random().toString(36).slice(2, 10);
+    }
+
+    formulario.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      mensagem.className = "message";
+      mensagem.textContent = "";
+
+      if (!formulario.checkValidity()) {
+        formulario.reportValidity();
+        return;
+      }
+
+      const notas = {
+        q_iniciativa: valorRadio("q_iniciativa"),
+        q_criatividade: valorRadio("q_criatividade"),
+        q_planejamento: valorRadio("q_planejamento"),
+        q_comunicacao: valorRadio("q_comunicacao"),
+        q_lideranca: valorRadio("q_lideranca"),
+        q_resiliencia: valorRadio("q_resiliencia"),
+        q_oportunidades: valorRadio("q_oportunidades"),
+        q_riscos: valorRadio("q_riscos")
+      };
+
+      const somaNotas = Object.values(notas).reduce((soma, valor) => soma + valor, 0);
+      const indiceEmpreendedor = Math.round((somaNotas / 40) * 100);
+
+      const resposta = {
+        identificador: gerarIdentificador(),
+        consentimento: document.querySelector("#consentimento").checked,
+        idade: document.querySelector("#idade").value,
+        curso: document.querySelector("#curso").value.trim(),
+        semestre: document.querySelector("#semestre").value,
+        turno: document.querySelector("#turno").value,
+        area_interesse: document.querySelector("#area_interesse").value.trim(),
+        experiencia_empreendedora: document.querySelector("#experiencia_empreendedora").value,
+        interesse_negocio: Number(document.querySelector("#interesse_negocio").value),
+        tipo_projeto: document.querySelector("#tipo_projeto").value,
+        ...notas,
+        habilidades: document.querySelector("#habilidades").value.trim(),
+        ideia_projeto: document.querySelector("#ideia_projeto").value.trim() || null,
+        apoio: document.querySelector("#apoio").value,
+        autoriza_uso_agregado: document.querySelector("#autoriza_uso_agregado").checked,
+        indice_empreendedor: indiceEmpreendedor
+      };
+
+      console.log("Dados enviados:", resposta);
+
+      botaoEnviar.disabled = true;
+      botaoEnviar.textContent = "Enviando...";
+
+      try {
+        const { error } = await supabaseClient
+          .from("respostas_perfil_empreendedor")
+          .insert([resposta]);
+
+        if (error) {
+          console.error("Erro do Supabase:", error);
+
+          mostrarMensagem(
+            "Não foi possível enviar.\n\n" +
+            "Mensagem: " + error.message + "\n" +
+            "Código: " + (error.code || "não informado") + "\n" +
+            "Detalhes: " + (error.details || "não informado"),
+            "error"
+          );
+          return;
+        }
+
+        mostrarMensagem(
+          "Resposta enviada com sucesso. Obrigado pela participação!",
+          "success"
+        );
+
+        formulario.reset();
+      } catch (erro) {
+        console.error("Erro inesperado:", erro);
+
+        mostrarMensagem(
+          "Ocorreu um erro inesperado. Verifique sua conexão e tente novamente.\n\n" +
+          erro.message,
+          "error"
+        );
+      } finally {
+        botaoEnviar.disabled = false;
+        botaoEnviar.textContent = "Enviar respostas";
+      }
+    });
+  </script>
+</body>
+</html>
