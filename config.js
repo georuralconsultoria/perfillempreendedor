@@ -12,6 +12,6 @@
  * Nunca coloque uma Secret key ou service_role key neste arquivo.
  */
 window.APP_CONFIG = {
-  SUPABASE_URL: "COLE_A_PROJECT_URL_AQUI",
-  SUPABASE_PUBLISHABLE_KEY: "COLE_A_PUBLISHABLE_KEY_AQUI"
+  SUPABASE_URL: "https://rtllxyjtprhhaolrzkoa.supabase.co",
+  SUPABASE_PUBLISHABLE_KEY: "COLE_AQUI_A_CHAVE_PUBLISHABLE_COMPLETA"
 };
